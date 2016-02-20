@@ -22,12 +22,34 @@ Template.available_user.helpers({
 
 
 Template.chat_page.helpers({
+  ava1:function(){
+    if(Meteor.user()){
+      var user1Id = Chats.findOne({_id:Session.get("chatId")}).user1Id;
+      return Meteor.users.findOne({_id: user1Id}).profile.avatar;
+    }
+  },
+  ava2:function(){
+    if(Meteor.user()){
+      var user2Id = Chats.findOne({_id: Session.get("chatId")}).user2Id;
+      return Meteor.users.findOne({_id: user2Id}).profile.avatar;
+    }
+  },
   messages:function(){
     var chat = Chats.findOne({_id:Session.get("chatId")});
     return chat.messages;
   }, 
   other_user:function(){
-    return ""
+    if(Meteor.user()){
+      var userId = Chats.findOne({_id:Session.get("chatId")}).user2Id;
+      return Meteor.users.findOne({_id: userId}).profile.username;
+    }
   }, 
 
+})
+
+Template.chat_message.helpers({
+  username: function(userId){
+    console.log(userId);
+    return Meteor.users.findOne({_id: userId}).profile.username;
+  }
 })
