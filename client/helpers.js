@@ -1,4 +1,4 @@
-/*global Chats */
+/*global Chats, Router */
 
 Template.available_user_list.helpers({
   users:function(){
@@ -22,26 +22,27 @@ Template.available_user.helpers({
 
 
 Template.chat_page.helpers({
-  ava1:function(){
-    if(Meteor.user()){
-      var user1Id = Chats.findOne({_id:Session.get("chatId")}).user1Id;
-      return Meteor.users.findOne({_id: user1Id}).profile.avatar;
-    }
-  },
-  ava2:function(){
-    if(Meteor.user()){
-      var user2Id = Chats.findOne({_id: Session.get("chatId")}).user2Id;
-      return Meteor.users.findOne({_id: user2Id}).profile.avatar;
-    }
-  },
   messages:function(){
     var chat = Chats.findOne({_id:Session.get("chatId")});
-    return chat.messages;
+    if (chat){
+      var messages = chat.messages;
+      var chuncks = [], lines=[messages.shift()];
+      while (messages.length > 0) {
+        if (lines[lines.length -1].userId == messages[0].userId) {
+          lines.push(messages.shift());
+        } else {
+          chuncks.push({lines: lines, userId: lines[0].userId});
+          lines = [messages.shift()];
+        }
+      }
+      chuncks.push({lines: lines, userId: lines[0].userId});
+    }
+    return chuncks;
   }, 
   other_user:function(){
     if(Meteor.user()){
-      var userId = Chats.findOne({_id:Session.get("chatId")}).user2Id;
-      return Meteor.users.findOne({_id: userId}).profile.username;
+      var other_user_id = Router.current().params._id;
+      return Meteor.users.findOne({_id: other_user_id}).profile.username;
     }
   }, 
 
@@ -49,7 +50,16 @@ Template.chat_page.helpers({
 
 Template.chat_message.helpers({
   username: function(userId){
-    console.log(userId);
     return Meteor.users.findOne({_id: userId}).profile.username;
+  },
+  ownMessage: function(userId){
+    if(Meteor.userId() == userId){
+      return true;
+    } else {
+      return false;
+    }
+  },
+  avatar:function(userId){
+    return Meteor.users.findOne({_id: userId}).profile.avatar;
   }
 })

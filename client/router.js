@@ -18,6 +18,7 @@ Router.route('/chat/:_id', function () {
   var otherUserId = this.params._id;
   // find a chat that has two users that match current user id
   // and the requested user id
+  /*
   var filter = {$or:[
               {user1Id:Meteor.userId(), user2Id:otherUserId}, 
               {user2Id:Meteor.userId(), user1Id:otherUserId}
@@ -29,6 +30,8 @@ Router.route('/chat/:_id', function () {
   else {// there is a chat going already - use that. 
     chatId = chat._id;
   }
+  */
+  var chatId = "wsx9qxDfzb4eAPkpN"; // fixated session while not dealing with publish and subscribe
   if (chatId){// looking good, save the id to the session
     Session.set("chatId",chatId);
   }

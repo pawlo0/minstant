@@ -1,16 +1,9 @@
 <!-- Top level template for the chat page -->
 <template name="chat_page">
 	<div class="row">
-		<div class="col-md-2">
-			<img class="avatar_img" src="/{{ava1}}"/>
-		</div>
-		<div class="col-md-8">
+		<div class="col-xs-12">
 			<h2>You're talking to {{other_user}}</h2>
 		</div>
-		<div class="col-md-2 text-right">
-			<img class="avatar_img" src="/{{ava2}}"/>
-		</div>
-		
 	</div>
 	<div class="row">
 		<div class="col-md-12">
@@ -33,7 +26,49 @@
 
 <!-- simple template that displays a message -->
 <template name="chat_message">
-	{{username userId}} said: {{text}}
-	{{sentOn}}
-	<br>
+	{{#if ownMessage userId}}
+		<div class="row">
+		<div class="col-xs-11">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-xs-12">
+							{{username userId}} said:
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					{{#each lines}}
+						<p>{{text}}</p>
+					{{/each}}
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-1">
+			<img class="avatar100" src="/{{avatar userId}}"/>
+		</div>		
+	</div>
+	{{else}}
+	<div class="row">
+		<div class="col-xs-1">
+			<img class="avatar100" src="/{{avatar userId}}"/>
+		</div>
+		<div class="col-xs-11">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-xs-12">
+							{{username userId}} said:
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					{{#each lines}}
+						<p>{{text}}</p>
+					{{/each}}
+				</div>
+			</div>
+		</div>
+	</div>
+	{{/if}}
 </template>
