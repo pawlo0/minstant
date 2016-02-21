@@ -7,4 +7,8 @@ Meteor.publish("chats", function(){
             {user2Id: this.userId}
             ]
     });
+});
+
+Meteor.publish("users", function(){
+    return Meteor.users.find();
 })

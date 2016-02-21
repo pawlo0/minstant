@@ -17,5 +17,9 @@ Meteor.methods({
         chat.messages = msgs;
         // update the chat object in the database.
         Chats.update(chat._id, chat);
+    },
+    users: function(){
+        console.log("method:" + Meteor.users.find());
+        return Meteor.users.find();
     }
 })
