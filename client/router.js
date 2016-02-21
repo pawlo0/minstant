@@ -13,30 +13,23 @@ Router.route('/', function () {
 
 // specify a route that allows the current user to chat to another users
 Router.route('/chat/:_id', function () {
+  
+  var route = this;
+  
+  this.render("navbar", {to:"header"});
+  this.render("loading", {to:"main"});
+  
   // the user they want to chat to has id equal to 
   // the id sent in after /chat/... 
-  var otherUserId = this.params._id, chatId;
-  // find a chat that has two users that match current user id
-  // and the requested user id
-  
-  var filter = {$or:[
-              {user1Id:Meteor.userId(), user2Id:otherUserId}, 
-              {user2Id:Meteor.userId(), user1Id:otherUserId}
-              ]};
-  var chat = Chats.findOne(filter);
-  /*
-  if (!chat){// no chat matching the filter - need to insert a new one
-    chatId = Meteor.call("addChat", Meteor.userId(), otherUserId);
-  }
-  else {// there is a chat going already - use that. 
-    chatId = chat._id;
-  }
-  
-  if (chatId){// looking good, save the id to the session
-    Session.set("chatId",chatId);
-  }
-  */
-  Session.set("chatId", "wsx9qxDfzb4eAPkpN") // fixeted chatId (again) while not impleted publish and subscribe
-  this.render("navbar", {to:"header"});
-  this.render("chat_page", {to:"main"});  
+  var otherUserId = this.params._id;
+
+  // Set ssession by calling the getChatId method
+  Meteor.call("getChatId", otherUserId, function(err, res){
+    if(err){
+      console.log("getChatId callback got error: "+err);
+    } else {
+      Session.set("chatId", res);
+      route.render("chat_page", {to:"main"}); 
+    }
+  });
 });
