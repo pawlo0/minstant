@@ -24,6 +24,7 @@ Router.route('/chat/:_id', function () {
               {user2Id:Meteor.userId(), user1Id:otherUserId}
               ]};
   var chat = Chats.findOne(filter);
+  /*
   if (!chat){// no chat matching the filter - need to insert a new one
     chatId = Meteor.call("addChat", Meteor.userId(), otherUserId);
   }
@@ -34,6 +35,8 @@ Router.route('/chat/:_id', function () {
   if (chatId){// looking good, save the id to the session
     Session.set("chatId",chatId);
   }
+  */
+  Session.set("chatId", "wsx9qxDfzb4eAPkpN") // fixeted chatId (again) while not impleted publish and subscribe
   this.render("navbar", {to:"header"});
   this.render("chat_page", {to:"main"});  
 });
