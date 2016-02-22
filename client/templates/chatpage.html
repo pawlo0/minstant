@@ -7,11 +7,17 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
+			{{#if noMessages}}
 			<div class="well well-lg">
-			{{#each messages}}
-			{{> chat_message}}
-			{{/each}}
-			</div>	
+				<h3><em>Please, write your message below.</em></h3>
+			</div>
+			{{else}}
+			<div class="well well-lg">
+				{{#each messages}}
+				{{> chat_message}}
+				{{/each}}
+			</div>
+			{{/if}}
 		</div>
 	</div>
     <div class="row">

@@ -5,7 +5,6 @@ Meteor.methods({
         Chats.insert({user1Id: userId, user2Id: otherUserId});
     },
     pushMessage: function (chat, text) {
-        console.log(chat._id)
         var msgs = chat.messages; // pull the messages property
         if (!msgs){// no messages yet, create a new array
           msgs = [];

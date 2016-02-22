@@ -38,7 +38,14 @@ Template.chat_page.helpers({
       chuncks.push({lines: lines, userId: lines[0].userId});
     }
     return chuncks;
-  }, 
+  },
+  noMessages:function(){
+    if(!Chats.findOne({_id:Session.get("chatId")}).messages){
+      return true;
+    } else {
+      return false;
+    }
+  },
   other_user:function(){
     if(Meteor.user()){
       var other_user_id = Router.current().params._id;
