@@ -1,4 +1,8 @@
 <!-- Top level template for the lobby page -->
 <template name="lobby_page">
+    {{#if currentUser}}
 	{{> available_user_list}}
+	{{else}}
+	<h2><em>Please login to see the available users.</em></h2>
+	{{/if}}
 </template>
