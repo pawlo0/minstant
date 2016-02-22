@@ -1,5 +1,6 @@
 <!-- Top level template for the chat page -->
 <template name="chat_page">
+	{{#if currentUser}}
 	<div class="row">
 		<div class="col-xs-12">
 			<h2>You're talking to {{other_user}}</h2>
@@ -28,6 +29,11 @@
 		</form>
 		</div>
 	</div>
+	{{else}}
+	<div class="row">
+		<h3><em>No user logged in!</em></h3>
+	</div>
+	{{/if}}
 </template>
 
 <!-- simple template that displays a message -->
