@@ -18,23 +18,27 @@ Router.route('/chat/:_id', function () {
   
   this.render("navbar", {to:"header"});
   
-  if (!Meteor.user()){
-    this.redirect("/");
-  } else {
-    this.render("loading", {to:"main"});
-    
-    // the user they want to chat to has id equal to 
-    // the id sent in after /chat/... 
-    var otherUserId = this.params._id;
+  this.render("loading", {to:"main"});
   
-    // Set ssession by calling the getChatId method
-    Meteor.call("getChatId", otherUserId, function(err, res){
-      if(err){
-        console.log("getChatId callback got error: "+err);
-      } else {
-        Session.set("chatId", res);
-        route.render("chat_page", {to:"main"}); 
-      }
-    });
+  // the user they want to chat to has id equal to 
+  // the id sent in after /chat/... 
+  var otherUserId = this.params._id;
+
+  // Set ssession by calling the getChatId method
+  Meteor.call("getChatId", otherUserId, function(err, res){
+    if(err){
+      console.log("getChatId callback got error: "+err);
+    } else {
+      Session.set("chatId", res);
+      route.render("chat_page", {to:"main"}); 
+    }
+  });
+});
+
+Router.onBeforeAction(function() {
+  if (!Meteor.userId() && this.ready()) {
+    this.redirect("/"); 
+  } else {
+    this.next();
   }
 });
