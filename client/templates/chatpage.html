@@ -23,10 +23,18 @@
 	</div>
     <div class="row">
 		<div class="col-md-12">
-			<form class="js-send-chat">
-			<input class="input" type="text" name="chat" placeholder="type a message here...">
-			<button class="btn btn-default">send</button>
-		</form>
+			<form class="form-inline js-send-chat">
+				<div class="form-group">
+					<label for="text">Message:</label>
+					<input class="form-control" type="text" name="chat" placeholder="type a message here...">
+				</div>
+				<button class="btn btn-primary">send</button>
+				<!-- Button trigger modal -->
+				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+			  		See Available Emoticons
+				</button>
+				{{> emoticons }}
+			</form>
 		</div>
 	</div>
 	{{else}}
@@ -83,4 +91,63 @@
 		</div>
 	</div>
 	{{/if}}
+</template>
+
+<!-- Modal -->
+<template name="emoticons">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Available Emoticons</h4>
+	      </div>
+	      <div class="modal-body">
+		      <div class="row">
+		        <ul>
+		          <div class="col-xs-12 col-sm-4">
+		            <li>o_o O_O {{{parseEmoticons "o_o"}}}</li>
+		            <li>:D :-D {{{parseEmoticons ":D"}}}</li>
+		            <li>:) :-) =) =-) {{{parseEmoticons ":)"}}}</li>
+		            <li>:( :-( {{{parseEmoticons ":("}}}</li>
+		            <li>-_- {{{parseEmoticons "-_-"}}}</li>
+		            <li>:P :-P {{{parseEmoticons ":P"}}}</li>
+		            <li>:O :-O :o {{{parseEmoticons ":o"}}}</li>
+		            <li>:smirk: {{{parseEmoticons ":smirk:"}}}</li>
+		            <li>>:( :[ {{{parseEmoticons ">:("}}}</li>
+		            <li>:ninja: {{{parseEmoticons ":ninja:"}}}</li>
+		          </div>
+		          <div class="col-xs-12 col-sm-4">
+		            <li>:nerd: {{{parseEmoticons ":nerd:"}}}</li>
+		            <li>:S :-S {{{parseEmoticons ":S"}}}</li>
+		            <li>:bashful: {{{parseEmoticons ":bashful:"}}}</li>
+		            <li>:crying: {{{parseEmoticons ":crying:"}}}</li>
+		            <li>:puke: {{{parseEmoticons ":puke:"}}}</li>
+		            <li>:love: {{{parseEmoticons ":love:"}}}</li>
+		            <li>:devil: {{{parseEmoticons ":devil:"}}}</li>
+		            <li>:angel: {{{parseEmoticons ":angel:"}}}</li>
+		            <li>8) 8-) (H) {{{parseEmoticons "8)"}}}</li>
+		            <li>:wtf: {{{parseEmoticons ":wtf:"}}}</li>
+		          </div>
+		          <div class="col-xs-12 col-sm-4">
+		            <li>:sweating: {{{parseEmoticons ":sweating:"}}}</li>
+		            <li>>:D {{{parseEmoticons ">:D"}}}</li>
+		            <li>:spooked: {{{parseEmoticons ":spooked:"}}}</li>
+		            <li>:embarrassed: {{{parseEmoticons ":embarrassed:"}}}</li>
+		            <li>O.o {{{parseEmoticons "O.o"}}}</li>
+		            <li>x-D {{{parseEmoticons "x-D"}}}</li>
+		            <li>;) ;-) {{{parseEmoticons ";)"}}}</li>
+		            <li>:\\ :-\\ {{{parseEmoticons ":\\"}}}</li>
+		            <li>:beer: {{{parseEmoticons ":beer:"}}}</li>
+		            <li>:poop: {{{parseEmoticons ":poop:"}}}</li>
+		          </div>
+		        </ul>
+		      </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 </template>
