@@ -39,3 +39,8 @@ Router.route('/chat/:_id', function () {
     });
   }
 });
+
+Router.route('/about', function(){
+  this.render("navbar", {to: "header"});
+  this.render("about", {to: "main"});
+});

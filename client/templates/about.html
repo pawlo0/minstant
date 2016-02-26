@@ -1,0 +1,37 @@
+<template name="about">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>About</h1><hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+        <p>Minstant is an instant messaging app for the <a href="https://www.coursera.org/learn/web-application-development/">Web Application Development with JavaScript and MongoDB</a> course on Coursera</p>
+        <p>Created with <a href="https://www.meteor.com/">Meteor</a></p>
+        <p>Created by: <a href="https://github.com/pawlo0">Paulo Santos</a></p><hr>
+        <h2>Accomplished Tasks:</h2>
+        <div class="col-md-offset-1">
+            <hr>
+            <p><strong>Task 1: </strong>Improved the look and feel</p>
+            <p>The templates and helper functions were adapted so that the messaging window displays users’ avatars next to their messages.</p><hr>
+            <p><strong>Task 2: </strong>Implement data writing security</p>
+            <p>Insecure package removed from the application and Meteor methods were implemented to allow the insertion of chat items in the Chats collection.</p>
+            <p>Insertions/ updates can't be made from console.</p><hr>
+            <p><strong>Task 3: </strong>Data reading security implemented</p>
+            <p>Autopublish package removed from the application and publish and subscribe methods were implemented for Chats collection.</p>
+            <p>Users are only able to retrieve chats that have their user id in either the user1Id field or the user2Id field.</p><hr>
+            <p><strong>Challange task: </strong>Emoticons implemented</p>
+            <p>Emoticon functionality was implemented, which allows the user to insert graphical emoticons into their message.</p><hr>
+            <p><strong>Extra spec 1: </strong>Users can't see chat page or users list nor create new Chats unless logged in</p>
+            <p>Altought having acomplished all tasks, there was a little bug in the app. One could see the available users and select one to chat without being logged in.</p>
+            <p>This caused the insertion of new chats in the colletion even though one could not maintain that chat.</p>
+            <p>Found this bug when tried to find chats through the console and chats keep coming up, without messages though.</p><hr>
+            <p><strong>Extra spec 2: </strong>Users are redirected to welcome page if not logged in</p>
+            <p>Implemented a welcome page and then, through the router, implemented redirect so that users are redireted to welcome page when they logout.</p>
+            <p>The redirect works when the users logs out in a chat page or in the users list or even if they try to access a chat page through the URL when logged out.</p>
+            <hr>
+        </div>
+
+    </div>      
+  </div>
+</template>
