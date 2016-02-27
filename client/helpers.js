@@ -68,5 +68,17 @@ Template.chat_message.helpers({
   },
   avatar:function(userId){
     return Meteor.users.findOne({_id: userId}).profile.avatar;
+  },
+  time: function(sentOn){
+    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var str = "(" + sentOn.getDate() + "/" + monthNames[sentOn.getMonth()] + " " +  sentOn.getHours() + ":" + addZero(sentOn.getMinutes()) + ")";
+    return str;
   }
 })
+
+function addZero(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}

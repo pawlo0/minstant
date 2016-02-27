@@ -53,13 +53,22 @@
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col-xs-12">
-							{{username userId}} said:
+							I said:
 						</div>
 					</div>
 				</div>
 				<div class="panel-body">
 					{{#each lines}}
-						<p>{{{parseEmoticons text}}}</p>
+						<div class="row">
+							<div class="col-xs-12">
+								<p>{{{parseEmoticons text}}}</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-offset-1">
+								<p class="smaller">- {{time sentOn}}</p>
+							</div>							
+						</div>
 					{{/each}}
 				</div>
 			</div>
@@ -84,7 +93,16 @@
 				</div>
 				<div class="panel-body">
 					{{#each lines}}
-						<p>{{{parseEmoticons text}}}</p>
+						<div class="row">
+							<div class="col-xs-12">
+								<p>{{{parseEmoticons text}}}</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-offset-1">
+								<p class="smaller">- {{time sentOn}}</p>
+							</div>							
+						</div>
 					{{/each}}
 				</div>
 			</div>
