@@ -35,3 +35,7 @@ Found this bug when tried to find chats through the console and chats keep comin
 #### Extra spec 2: Users are redirected to welcome page if not logged in
 Implemented a welcome page and then, through the router, implemented redirect so that users are redireted to welcome page when they logout.</p>
 The redirect works when the users logs out in a chat page or in the users list or even if they try to access a chat page through the URL when logged out.</p>
+
+#### Extra soec 3: Messages are displayed in group
+Tried to look a bit lot google talk, were messages from the same user go in the same panel.
+New panel is created when the next message comes from the other user.
